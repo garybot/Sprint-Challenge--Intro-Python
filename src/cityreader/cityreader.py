@@ -10,6 +10,9 @@ class City:
         self.lat = lat
         self.lon = lon
 
+    def __str__(self):
+        return f'{self.name}, ({self.lat}, {self.lon})'
+
 
 
 # We have a collection of US cities with population over 750,000 stored in the
@@ -76,13 +79,6 @@ for c in cities:
 
 # TODO Get latitude and longitude values from the user
 
-latlon1 = input("\nEnter lat1,lon1:").split(',')
-latlon1[0] = float(latlon1[0])
-latlon1[1] = float(latlon1[1])
-latlon2 = input("\nEnter lat2,lon2:").split(',')
-latlon2[0] = float(latlon2[0])
-latlon2[1] = float(latlon2[1])
-
 def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
   # within will hold the cities that fall within the specified region
   within = []
@@ -97,4 +93,13 @@ def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
 
   return within
 
-cityreader_stretch(latlon1[0], latlon1[1], latlon2[0], latlon2[1], cities)
+latlon1 = input("\nEnter lat1,lon1:").split(',')
+latlon2 = input("\nEnter lat2,lon2:").split(',')
+
+found = cityreader_stretch(float(latlon1[0]),
+                   float(latlon1[1]),
+                   float(latlon2[0]),
+                   float(latlon2[1]),
+                   cities)
+for city in found:
+    print(city)
